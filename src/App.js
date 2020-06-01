@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Login from './Login/Login'
 import Home from './Home/Home'
 import Manage from './Manage/Manage'
+import Detail from './Manage/Detail'
 
 const { Header, Content, Footer } = Layout;
 
@@ -50,14 +51,14 @@ class App extends React.Component{
             <Menu theme="dark" mode="horizontal" style={{marginLeft:'14%'}} defaultSelectedKeys={['home']}>
               <Menu.Item key="home"><Link to="/home">首页</Link></Menu.Item>
               <Menu.Item key="manage"><Link to="/manage">病例管理</Link></Menu.Item>
-              <Menu.Item key="generate"><Link to="/generate">新建病例</Link></Menu.Item>
+              <Menu.Item key="generate"><Link to="/detail">新建病例</Link></Menu.Item>
             </Menu>        
           </Header>
           <Content className="layout-content">
             <Switch>
               <Route path='/home'><Home /></Route>
               <Route path='/manage'><Manage /></Route>
-              <Route path='/generate'><Generate /></Route>
+              <Route path='/detail'><Detail /></Route>
             </Switch>
           </Content>
           <Footer className="layout-footer">Copyright @Zhejiang University 2020</Footer>
@@ -65,10 +66,6 @@ class App extends React.Component{
       </Router>
     );
   }
-}
-
-function Generate() {
-  return <h2>new patient</h2>;
 }
 
 export default App;
