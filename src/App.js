@@ -37,16 +37,7 @@ class App extends React.Component{
               <Login 
                 visible={this.state.visible}
                 onCancel={this.handleCancel}
-              />
-              {/* <Modal
-                title="Basic Modal"
-                visible={this.state.visible}
-                onOk={this.handleOk}
-                onCancel={this.handleCancel}
-              >
-                <p>用户名：</p>
-                <p>密码：</p>
-              </Modal> */}
+              />            
             </div>
             <Menu theme="dark" mode="horizontal" style={{marginLeft:'14%'}} defaultSelectedKeys={['home']}>
               <Menu.Item key="home"><Link to="/home">首页</Link></Menu.Item>

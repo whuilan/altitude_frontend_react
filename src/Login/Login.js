@@ -18,7 +18,7 @@ class Login extends React.Component {
           visible={this.props.visible}
           onCancel={this.handleCancle}
         >
-          <LoginForm />
+          <LoginForm history={this.props.history} />
         </Modal>      
     );
   }

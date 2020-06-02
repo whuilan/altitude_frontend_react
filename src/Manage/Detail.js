@@ -137,12 +137,16 @@ const Detail = () => {
     console.log('Received values of form: ', values);
   };
 
+  const gotoResult = () => {
+    
+  }
+
   return (
     <div>
       {/* 保存和查看评估结果的按钮区 */}
       <div className="top-button-area">
         <Button type="primary" htmlType="submit">保存</Button>
-        <Button type="primary" style={{marginLeft:'20px'}}><Link to={<Result />}>查看评估结果</Link></Button>
+        <Button type="primary" style={{marginLeft:'20px'}} onClick={gotoResult}>查看评估结果</Button>
       </div>
 
       {/* 基本信息输入区 */}
