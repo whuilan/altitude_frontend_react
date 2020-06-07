@@ -2,8 +2,9 @@ import React from 'react'
 import { Layout, Menu } from 'antd'
 import './Layout.css'
 // Page Components
-import Home from './home/home'
-import TodoList from './todolist/TodoList'
+import Home from './page/home/home'
+import Manage from './page/manage/manage'
+
 // React-Router
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 const { Header, Footer, Content } = Layout;
@@ -26,7 +27,8 @@ class MainLayout extends React.Component {
           </Header>
           <Content className="site-layout">
           <div className="site-layout-background">
-              <Route path="/home" component={Home} />
+              <Route key="route-home" path="/home" component={Home} />
+              <Route key="route-manage" path="/manage" component={Manage} />
           </div>
           </Content>
           <Footer className="site-footer">Copyright @ZhejiangUniversity 2020</Footer>

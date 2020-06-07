@@ -5,7 +5,7 @@ import AddTodo from './components/AddTodo'
 import ShowTodo from './components/ShowTodo'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
-import { addTodoAction, deleteTodoAction, toggleTodoAction } from '../store/store'
+import { addTodoAction, deleteTodoAction, toggleTodoAction } from '../../store/store'
 
 import './TodoList.css'
 
