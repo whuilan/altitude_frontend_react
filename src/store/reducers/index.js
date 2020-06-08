@@ -1,8 +1,12 @@
 import { combineReducers } from 'redux'
-import todos from './todos'
 
-const todoApp = combineReducers({
-  todos
+// Reducers
+import loginReducer from './login'
+
+// import todos from './todos'
+
+const reducer = combineReducers({
+  loginReducer
 })
 
-export default todoApp
+export default reducer
