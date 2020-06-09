@@ -12,7 +12,7 @@ const httpInstance = axios.create({
 httpInstance.interceptors.response.use(
   response => {
     const res = response.data;
-    console.log(res)
+    console.log(res) // {errno: 0, msg: "登录成功"}
     if(res.errno !== 0){
       message.error(res.msg)
     }

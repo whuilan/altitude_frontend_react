@@ -4,9 +4,9 @@ const USERKEY = 'USER_KEY';
 const defaultUser = JSON.parse(localStorage.getItem(USERKEY)) || {} // {username:"admin", password:"admin"}
 
 function loginReducer(state={...defaultUser, visible: false}, action){
-  console.log(action)
+  // console.log(action) // {type: "DO_VISIBLE"}, {type: "DO_LOGIN", username: "admin", password: "admin"}
   const { type, username, password } = action;
-  console.log(type, username, password)
+  // console.log(type, username, password) // DO_VISIBLE undefined undefined, DO_LOGIN admin admin
   switch(type){
     case 'DO_VISIBLE': // 用户点击登录导航栏的登录
       return { ...defaultUser, visible: true } 

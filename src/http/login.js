@@ -7,7 +7,7 @@ function doLogin({username, password}, dispatch){
     loginApi,
     {username, password}
   ).then(res => {
-    console.log(res)
+    // console.log(res) // {errno: 0, msg: "登录成功"}
     if(res.errno === 0){
       dispatch({
         type: 'DO_LOGIN',

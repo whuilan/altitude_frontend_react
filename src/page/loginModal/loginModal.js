@@ -10,7 +10,7 @@ import doLogin from '../../http/login'
 class LoginModal extends React.Component{
 
   handleLogin = (values) => {
-    console.log(values) // {username: "admin", password: "admin"}
+    // console.log(values) // {username: "admin", password: "admin"}
     doLogin(values, this.props.dispatch)
     // 伪登录
     // this.props.dispatch({type:'DO_LOGIN', ...values})
@@ -54,7 +54,7 @@ class LoginModal extends React.Component{
             </Form.Item>            
 
             <Form.Item>
-              <Button type="primary" htmlType="submit" style={{width:'100%'}}>
+              <Button type="primary" htmlType="submit" className="login-form-button">
                 登录
               </Button>
             </Form.Item>

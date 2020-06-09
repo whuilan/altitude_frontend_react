@@ -8,6 +8,9 @@
 #components-form-demo-normal-login .ant-col-rtl .login-form-forgot {
   float: left;
 } */
-#components-form-demo-normal-login .login-form-button {
+.login-form-button {
   width: 100%;
+}
+.register{
+  color: red;
 }
