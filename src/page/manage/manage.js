@@ -89,13 +89,25 @@ class Manage extends React.Component{
   }
 
   handleSearch = (values) => {
-    this.props.dispatch({type: 'SEARCH_PATIENT', filter: values})
+    this.props.dispatch({type: 'SEARCH_PATIENT', filterItems: values})
     // console.log('Received values of form: ', values);
   }
 
 
   render(){
-    const patientList = this.props.patientList;
+    // 将要显示的病人列表初始化为包含全部病人的病人列表
+    let filteredPatientList = this.props.patientList;
+    const filter = this.props.filter;
+    if(filter.pid){
+      filteredPatientList = filteredPatientList.filter(patient => {
+        return patient.pid === filter.pid;
+      })
+    }
+    if(filter.name){
+      filteredPatientList = filteredPatientList.filter(patient => {
+        return patient.name === filter.name;
+      })
+    }
 
     return (
       <div>
@@ -114,7 +126,7 @@ class Manage extends React.Component{
           </Row>
         </Form>
         <h2 style={{marginTop:'10px'}}>病人列表</h2>
-        <Table columns={this.columns} dataSource={patientList} />
+        <Table columns={this.columns} dataSource={filteredPatientList} />
       </div>
     )
   }
@@ -123,7 +135,7 @@ class Manage extends React.Component{
 function mapStatesToProps(state){
   return {
     patientList: state.manageReducer.patientList,
-    filter: state.filter
+    filter: state.manageReducer.filter
   }
 }
 
