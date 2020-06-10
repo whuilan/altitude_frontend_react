@@ -5,7 +5,7 @@ import './loginModal.css'
 import { connect } from 'react-redux';
 
 // 登录http请求
-import doLogin from '../../http/login'
+import doLogin from '../../http/loginHttp'
 
 class LoginModal extends React.Component{
 

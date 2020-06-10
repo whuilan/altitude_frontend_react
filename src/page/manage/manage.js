@@ -4,7 +4,7 @@ import { Table } from 'antd';
 import './manage.css'
 import { connect } from 'react-redux';
 
-import { queryPatientList } from '../../http/manage'
+import { queryPatientList, deletePatientById } from '../../http/manageHttp'
 
 class Manage extends React.Component{
 
@@ -67,8 +67,8 @@ class Manage extends React.Component{
       key: 'operation',
       render: (_, record) => (
         <div>
-          <Button type='primary' key={`detail-${record.pid}`}>编辑</Button>
-          <Button type='primary' key={`delete-${record.pid}`}>删除</Button>
+          <Button type='primary' key={`detail-${record.pid}`}>详情</Button>
+          <Button type='primary' key={`delete-${record.pid}`} style={{marginLeft:'2px'}} onClick={() => deletePatientById(record.pid, this.props.dispatch)}>删除</Button>
         </div>
       ),
     },
@@ -77,13 +77,14 @@ class Manage extends React.Component{
   getSearchFields = () => {
     const children = this.searchItems.map(item => (
       <Col span={8} key={item.name}>
-          <Form.Item
-            name={item.name}
-            label={item.label}
-          >
-            <Input placeholder={`根据${item.label}搜索`} />
-          </Form.Item>
-        </Col>
+        <Form.Item
+          name={item.name}
+          label={item.label}
+          key={item.name}
+        >
+          <Input placeholder={`根据${item.label}搜索`} />
+        </Form.Item>
+      </Col>
     ))
     return children;
   }
@@ -92,7 +93,6 @@ class Manage extends React.Component{
     this.props.dispatch({type: 'SEARCH_PATIENT', filterItems: values})
     // console.log('Received values of form: ', values);
   }
-
 
   render(){
     // 将要显示的病人列表初始化为包含全部病人的病人列表

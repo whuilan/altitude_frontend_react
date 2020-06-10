@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 
 // Reducers
-import loginReducer from './login'
-import manageReducer from './manage'
+import loginReducer from './loginReducer'
+import manageReducer from './manageReducer'
 
 // import todos from './todos'
 
