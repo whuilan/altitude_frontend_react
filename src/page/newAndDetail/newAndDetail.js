@@ -80,7 +80,6 @@ class NewAndDetail extends React.Component{
     const children = items.map(item => (
       <Col span={8} key={item.name}>
         <Form.Item
-          name={item.name}
           label={item.label}
           rules={[
               {
@@ -88,7 +87,6 @@ class NewAndDetail extends React.Component{
                 message: 'Input something!',
               },
             ]}
-          key={item.name}
         >
           {
             item.type === 'input'
@@ -116,6 +114,7 @@ class NewAndDetail extends React.Component{
   }
 
   render(){
+    console.log("执行一次render()")
     const {curPatient, dispatch} = this.props
     console.log(curPatient)
     return (

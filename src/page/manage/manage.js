@@ -11,6 +11,7 @@ class Manage extends React.Component{
 
   // TODO：深入理解react生命周期
   componentDidMount(){
+    this.props.dispatch({type: 'CLEAR_CURRENT_PATIENT'})
     queryPatientList(this.props.dispatch)
   }
 
@@ -86,7 +87,6 @@ class Manage extends React.Component{
         <Form.Item
           name={item.name}
           label={item.label}
-          key={item.name}
         >
           <Input placeholder={`根据${item.label}搜索`} />
         </Form.Item>
