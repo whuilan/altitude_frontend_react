@@ -75,6 +75,7 @@ class NewAndDetail extends React.Component{
 
   getFields = (items) => {
     const {curPatient} = this.props
+    console.log(curPatient["pid"])
     const { Option } = Select;
     const children = items.map(item => (
       <Col span={8} key={item.name}>
@@ -98,7 +99,7 @@ class NewAndDetail extends React.Component{
             : item.type === 'select'
             ? <Select 
                 value={curPatient[item.name]}
-                onChange={value => this.handleInputChange(value, item.name)}
+                onChange={value => this.handleInputChange(item.name, value)}
               >
                 {item.options.map(option => <Option value={option} key={option}>{option}</Option>)}
             </Select>
@@ -116,6 +117,7 @@ class NewAndDetail extends React.Component{
 
   render(){
     const {curPatient, dispatch} = this.props
+    console.log(curPatient)
     return (
       <div>
         {/* 按钮区 */}

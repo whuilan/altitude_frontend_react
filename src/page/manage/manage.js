@@ -5,6 +5,7 @@ import './manage.css'
 import { connect } from 'react-redux';
 
 import { queryPatientList, deletePatientById } from '../../http/manageHttp'
+import { Link } from 'react-router-dom';
 
 class Manage extends React.Component{
 
@@ -24,6 +25,11 @@ class Manage extends React.Component{
       name: 'name'
     }
   ]
+
+  handleSelect = (selectedPatient) => {
+    // console.log(selectedPatient)
+    this.props.dispatch({type: 'SELECT_CURRENT_PATIENT', selectedPatient})
+  }
 
   // 病人列表展示的病人信息条目
   columns = [
@@ -67,7 +73,7 @@ class Manage extends React.Component{
       key: 'operation',
       render: (_, record) => (
         <div>
-          <Button type='primary' key={`detail-${record.pid}`}>详情</Button>
+          <Button type='primary' key={`detail-${record.pid}`} onClick={() => {this.handleSelect(record)}}><Link to='/new'>详情</Link></Button>
           <Button type='primary' key={`delete-${record.pid}`} style={{marginLeft:'2px'}} onClick={() => deletePatientById(record.pid, this.props.dispatch)}>删除</Button>
         </div>
       ),

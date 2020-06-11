@@ -17,6 +17,9 @@ function manageReducer(state = defaultState, action){
     // 搜索时筛选出满足条件的病人
     case 'SEARCH_PATIENT':
       return {...state, filter: action.filterItems}
+    case 'SELECT_CURRENT_PATIENT':
+      console.log(action.selectedPatient)
+      return {...state, curPatient: action.selectedPatient}
     // 设置当前病人（在管理页面的table中选中or正在新增输入的病人）
     case 'SET_CURRENT_PATIENT':
       const {name, value} = action;
