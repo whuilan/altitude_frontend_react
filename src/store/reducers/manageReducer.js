@@ -17,13 +17,13 @@ function manageReducer(state = defaultState, action){
     // 搜索时筛选出满足条件的病人
     case 'SEARCH_PATIENT':
       return {...state, filter: action.filterItems}
-    case 'SELECT_CURRENT_PATIENT':
-      console.log(action.selectedPatient)
+    case 'SET_CURRENT_PATIENT':
       return {...state, curPatient: action.selectedPatient}
     // 设置当前病人（在管理页面的table中选中or正在新增输入的病人）
-    case 'SET_CURRENT_PATIENT':
+    case 'UPDATE_CURRENT_PATIENT':
       const {name, value} = action;
-      const updatedCurPatient = state.curPatient;
+      // 不要直接修改state
+      const updatedCurPatient = { ...state.curPatient };
       updatedCurPatient[name] = value;
       return {...state, curPatient: updatedCurPatient}
     case 'CLEAR_CURRENT_PATIENT':

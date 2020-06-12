@@ -29,7 +29,7 @@ class Manage extends React.Component{
 
   handleSelect = (selectedPatient) => {
     // console.log(selectedPatient)
-    this.props.dispatch({type: 'SELECT_CURRENT_PATIENT', selectedPatient})
+    this.props.dispatch({type: 'SET_CURRENT_PATIENT', selectedPatient})
   }
 
   // 病人列表展示的病人信息条目

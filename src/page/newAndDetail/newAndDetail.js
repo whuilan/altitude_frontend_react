@@ -1,4 +1,6 @@
 import React from 'react';
+import moment from 'moment';
+import 'moment/locale/zh-cn';
 import { connect } from 'react-redux';
 import { Input, Select, Switch, DatePicker, Button, Row, Col, Form } from 'antd';
 import { savePatient } from '../../http/manageHttp'
@@ -70,12 +72,12 @@ class NewAndDetail extends React.Component{
   ]
 
   handleInputChange(name, value){
-    this.props.dispatch({type:'SET_CURRENT_PATIENT',name, value})
+    this.props.dispatch({type:'UPDATE_CURRENT_PATIENT',name, value})
   }
 
   getFields = (items) => {
     const {curPatient} = this.props
-    console.log(curPatient["pid"])
+    // console.log(curPatient["pid"])
     const { Option } = Select;
     const children = items.map(item => (
       <Col span={8} key={item.name}>
@@ -102,9 +104,14 @@ class NewAndDetail extends React.Component{
                 {item.options.map(option => <Option value={option} key={option}>{option}</Option>)}
             </Select>
             : item.type === 'switch'
-            ? <Switch onChange={checked => {this.handleInputChange(item.name, checked)}} />
+            ? <Switch
+                checked={curPatient[item.name]}
+                onChange={checked => {this.handleInputChange(item.name, checked)}} />
             : item.type === 'date'
-            ? <DatePicker onChange={dateString => this.handleInputChange(item.name, dateString)} />
+            ? <DatePicker
+                format="YYYY-MM-DD"
+                value={curPatient[item.name] ? moment(curPatient[item.name]) : null} 
+                onChange={(_, dateString) => this.handleInputChange(item.name, dateString)} />
             : null
           }
         </Form.Item>
