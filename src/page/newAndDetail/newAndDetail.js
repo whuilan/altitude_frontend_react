@@ -5,14 +5,16 @@ import { connect } from 'react-redux';
 import { Input, Select, Switch, DatePicker, Button, Row, Col, Form } from 'antd';
 import { savePatient } from '../../http/manageHttp'
 
-import { FormInstance } from 'antd/lib/form';
-
 class NewAndDetail extends React.Component{
-  formRef = React.createRef()
 
-  componentDidUpdate(){
-    this.formRef.current.setFieldsValue(this.props.curPatient)
+  handleUpdate = () => {
+    console.log("更新前")
+    // this.basicFormRef.current.setFieldsValue({name: '李一'})
+    this.diseaseFormRef.current.setFieldsValue({poly: true})
+    console.log("更新后")
   }
+
+  dateFormat = 'YYYY-MM-DD'
 
   basicInfoItems = [
     {
@@ -90,8 +92,8 @@ class NewAndDetail extends React.Component{
     const children = items.map(item => (
       <Col span={8} key={item.name}>
         <Form.Item
-          label={item.label}
           name={item.name}
+          label={item.label}
           rules={[
               {
                 required: item.required,
@@ -101,55 +103,25 @@ class NewAndDetail extends React.Component{
         >
           {
             item.type === 'input'
-            ? <Input />
+            ? <Input onChange={(e) => this.handleInputChange(item.name, e.target.value)} />
             : item.type === 'select'
-            ? <Select>
+            ? <Select onChange={value => this.handleInputChange(item.name, value)}>
                 {item.options.map(option => <Option value={option} key={option}>{option}</Option>)}
             </Select>
             : item.type === 'switch'
-            ? <Switch />
+            ? <Switch
+               defaultChecked={curPatient[item.name]}
+               onChange={checked => {this.handleInputChange(item.name, checked)}} />
             : item.type === 'date'
-            ? <DatePicker />               
+            ? <DatePicker
+                // defaultValue={moment('2015/01/01', this.dateFormat)}
+                format={this.dateFormat}
+                onChange={(_, dateString) => this.handleInputChange(item.name, dateString)}
+             />               
             : null
           }
         </Form.Item>
       </Col>
-      // <Col span={8} key={item.name}>
-      //   <Form.Item
-      //     label={item.label}
-      //     rules={[
-      //         {
-      //           required: item.required,
-      //           message: 'Input something!',
-      //         },
-      //       ]}
-      //   >
-      //     {
-      //       item.type === 'input'
-      //       ? <Input 
-      //           value={curPatient[item.name]}
-      //           onChange={(e) => this.handleInputChange(item.name, e.target.value)}
-      //       />
-      //       : item.type === 'select'
-      //       ? <Select 
-      //           value={curPatient[item.name]}
-      //           onChange={value => this.handleInputChange(item.name, value)}
-      //         >
-      //           {item.options.map(option => <Option value={option} key={option}>{option}</Option>)}
-      //       </Select>
-      //       : item.type === 'switch'
-      //       ? <Switch
-      //           checked={curPatient[item.name]}
-      //           onChange={checked => {this.handleInputChange(item.name, checked)}} />
-      //       : item.type === 'date'
-      //       ? <DatePicker
-      //           format="YYYY-MM-DD"
-      //           value={curPatient[item.name] ? moment(curPatient[item.name]) : null} 
-      //           onChange={(_, dateString) => this.handleInputChange(item.name, dateString)} />
-      //       : null
-      //     }
-      //   </Form.Item>
-      // </Col>
     ))
     return children;
   }
@@ -158,6 +130,7 @@ class NewAndDetail extends React.Component{
     console.log("执行一次render()")
     const {curPatient, dispatch} = this.props
     console.log(curPatient)
+    const birthday = curPatient['birthday'] ? moment(curPatient['birthday'], this.dateFormat) : null
     return (
       <div>
         {/* 按钮区 */}
@@ -166,14 +139,14 @@ class NewAndDetail extends React.Component{
             <Button type="primary" onClick={() => savePatient({patient: curPatient}, dispatch)}>保存</Button>
           </Col>
           <Col span={4}>
-            <Button type="primary">查看评估结果</Button>
+            <Button type="primary" onClick={this.handleUpdate}>查看评估结果</Button>
           </Col>
         </Row>
 
         {/* 基本信息输入表单 */}
         <h2>基本信息</h2>
         <Form
-          ref={this.formRef}
+          initialValues={{...curPatient, birthday }}
           className="ant-advanced-search-form"
         >
           <Row gutter={24}>{this.getFields(this.basicInfoItems)}</Row>
@@ -182,7 +155,7 @@ class NewAndDetail extends React.Component{
         {/* 疾病信息 */}
         <h2>症状信息</h2>
         <Form
-          ref={this.formRef}
+          initialValues={curPatient}
           className="ant-advanced-search-form"
         >
           <Row gutter={24}>{this.getFields(this.diseaseInfoItems)}</Row>
