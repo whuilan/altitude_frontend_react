@@ -6,6 +6,7 @@ import LoginModal from './page/loginModal/loginModal'
 import Home from './page/home/home'
 import Manage from './page/manage/manage'
 import NewAndDetail from './page/newAndDetail/newAndDetail'
+import Result from './page/result/result'
 
 // React-Router
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
@@ -49,6 +50,7 @@ class MainLayout extends React.Component {
               <Route key="route-home" path="/home" component={Home} />
               <Route key="route-manage" path="/manage" component={Manage} />
               <Route key="route-new" path="/new" component={NewAndDetail} />
+              <Route key="route-result" path="/result/:id" component={Result} />
           </div>
           </Content>
           <Footer className="site-footer">Copyright @ZhejiangUniversity 2020</Footer>

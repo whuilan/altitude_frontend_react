@@ -4,6 +4,7 @@ import 'moment/locale/zh-cn';
 import { connect } from 'react-redux';
 import { Input, Select, Switch, DatePicker, Button, Row, Col, Form } from 'antd';
 import { savePatient } from '../../http/manageHttp'
+import { Link } from 'react-router-dom';
 
 class NewAndDetail extends React.Component{
 
@@ -139,7 +140,7 @@ class NewAndDetail extends React.Component{
             <Button type="primary" onClick={() => savePatient({patient: curPatient}, dispatch)}>保存</Button>
           </Col>
           <Col span={4}>
-            <Button type="primary" onClick={this.handleUpdate}>查看评估结果</Button>
+            <Button type="primary" disabled={curPatient.pid === undefined}><Link to={`/result/${curPatient.pid}`}>查看评估结果</Link></Button>
           </Col>
         </Row>
 
