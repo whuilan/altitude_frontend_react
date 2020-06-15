@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 
 // Reducers
 import loginReducer from './loginReducer'
+import routerReducer from './routerReducer'
 import manageReducer from './manageReducer'
 import resultReducer from './resultReducer'
 
@@ -9,6 +10,7 @@ import resultReducer from './resultReducer'
 
 const reducer = combineReducers({
   loginReducer,
+  routerReducer,
   manageReducer,
   resultReducer,
 })

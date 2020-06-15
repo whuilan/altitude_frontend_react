@@ -11,6 +11,9 @@ class Manage extends React.Component{
 
   // TODO：深入理解react生命周期
   componentDidMount(){
+    // 防止刷新后导航栏选中样式出错
+    const { pathname } = window.location
+    this.props.dispatch({type: 'SWITCH_ROUTE', pathname})
     this.props.dispatch({type: 'CLEAR_CURRENT_PATIENT'})
     queryPatientList(this.props.dispatch)
   }

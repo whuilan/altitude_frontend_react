@@ -8,6 +8,13 @@ import { loadResult } from '../../http/resultHttp'
 
 class Result extends React.Component{
 
+  componentDidMount(){
+    const { pathname } = window.location
+    this.props.dispatch({type: 'SWITCH_ROUTE', pathname})
+    // 页面第一次渲染就向后台请求结论
+    loadResult(this.props.dispatch)
+  }
+
   columns = [
     {
       title: '干预建议',
@@ -20,12 +27,6 @@ class Result extends React.Component{
       key: 'level',
     },
   ]
-
-  componentDidMount(){
-    // 页面第一次渲染就向后台请求结论
-    loadResult(this.props.dispatch)
-  }
-  
 
   render(){
     const {percent, suggests, source} = this.props.result

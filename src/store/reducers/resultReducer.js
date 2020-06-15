@@ -5,7 +5,7 @@ const defaultState = {
 }
 
 function resultReducer(state = defaultState, action){
-  console.log(action)
+  // console.log(action)
   const {type, result} = action;
   switch(type){
     case 'SET_RESULT':

@@ -23,8 +23,13 @@ class MainLayout extends React.Component {
     this.props.dispatch({type:"DO_LOGOUT"})
   }
 
+  handleMenuClick = (e) => {
+    this.props.dispatch({type:'SELECT_MENU', route: e.key})
+  }
+
   render() {
     const { username } = this.props.loginStatus;
+    const { router } = this.props;
 
     return (
       <Router>
@@ -38,11 +43,10 @@ class MainLayout extends React.Component {
                 <Button onClick={this.handleLogout}>您好，{username}</Button>              
               }
             </div>
-            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['home']} style={{ width: "70%" }}>
+            <Menu onClick={this.handleMenuClick} selectedKeys={router.route} theme="dark" mode="horizontal" style={{ width: "70%" }}>
               <Menu.Item key="home"><Link to="/home">首页</Link></Menu.Item>
               <Menu.Item key="manage"><Link to="/manage">患者管理</Link></Menu.Item>
               <Menu.Item key="new" onClick={() => this.props.dispatch({type: 'CLEAR_CURRENT_PATIENT'})}><Link to="/new">新增患者</Link></Menu.Item>
-              {/* <Menu.Item key="todo"><Link to="/todo">TodoList</Link></Menu.Item> */}
             </Menu>
           </Header>
           <Content className="site-layout">
@@ -65,6 +69,7 @@ class MainLayout extends React.Component {
 function mapStatesToProps(state){
   return {
     loginStatus: state.loginReducer,
+    router: state.routerReducer
   }
 }
 

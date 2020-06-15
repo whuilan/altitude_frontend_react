@@ -8,7 +8,7 @@ const defaultState = {
 }
 
 function manageReducer(state = defaultState, action){
-  console.log(action)
+  // console.log(action)
   const {type} = action;
   switch(type){
     // 进入病人管理页面时默认获取病人列表or删除某个病人时重置patientList

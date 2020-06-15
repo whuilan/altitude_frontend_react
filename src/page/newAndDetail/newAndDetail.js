@@ -11,19 +11,21 @@ class NewAndDetail extends React.Component{
   basicFormRef = React.createRef();
   diseaseFormRef = React.createRef();
 
-  // componentDidMount(){
-  //   console.log(this.props.match)
-  //   const { params } = this.props.match
-  //   if(params.id){
-  //     const {curPatient} = this.props
-  //     console.log(curPatient)
-  //     const birthday = curPatient['birthday'] ? moment(curPatient['birthday'], this.dateFormat) : null
-  //     this.basicFormRef.current.setFieldsValue({...curPatient, birthday})
-  //     this.diseaseFormRef.current.setFieldsValue(curPatient)
-  //   }else{
-  //     this.props.dispatch({type:'CLEAR_CURRENT_PATIENT'})
-  //   }
-  // }
+  componentDidMount(){
+    const { pathname } = window.location
+    this.props.dispatch({type: 'SWITCH_ROUTE', pathname})
+    // console.log(this.props.match)
+    // const { params } = this.props.match
+    // if(params.id){
+    //   const {curPatient} = this.props
+    //   console.log(curPatient)
+    //   const birthday = curPatient['birthday'] ? moment(curPatient['birthday'], this.dateFormat) : null
+    //   this.basicFormRef.current.setFieldsValue({...curPatient, birthday})
+    //   this.diseaseFormRef.current.setFieldsValue(curPatient)
+    // }else{
+    //   this.props.dispatch({type:'CLEAR_CURRENT_PATIENT'})
+    // }
+  }
 
   handleUpdate = () => {
     console.log("更新前")
