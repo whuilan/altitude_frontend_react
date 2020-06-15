@@ -8,10 +8,26 @@ import { Link } from 'react-router-dom';
 
 class NewAndDetail extends React.Component{
 
+  basicFormRef = React.createRef();
+  diseaseFormRef = React.createRef();
+
+  // componentDidMount(){
+  //   console.log(this.props.match)
+  //   const { params } = this.props.match
+  //   if(params.id){
+  //     const {curPatient} = this.props
+  //     console.log(curPatient)
+  //     const birthday = curPatient['birthday'] ? moment(curPatient['birthday'], this.dateFormat) : null
+  //     this.basicFormRef.current.setFieldsValue({...curPatient, birthday})
+  //     this.diseaseFormRef.current.setFieldsValue(curPatient)
+  //   }else{
+  //     this.props.dispatch({type:'CLEAR_CURRENT_PATIENT'})
+  //   }
+  // }
+
   handleUpdate = () => {
     console.log("更新前")
-    // this.basicFormRef.current.setFieldsValue({name: '李一'})
-    this.diseaseFormRef.current.setFieldsValue({poly: true})
+    this.basicFormRef.current.resetFields()
     console.log("更新后")
   }
 
@@ -142,11 +158,15 @@ class NewAndDetail extends React.Component{
           <Col span={4}>
             <Button type="primary" disabled={curPatient.pid === undefined}><Link to={`/result/${curPatient.pid}`}>查看评估结果</Link></Button>
           </Col>
+          <Col span={4}>
+            <Button type="primary" onClick={this.handleUpdate}>测试</Button>
+          </Col>
         </Row>
 
         {/* 基本信息输入表单 */}
         <h2>基本信息</h2>
         <Form
+          ref={this.basicFormRef}
           initialValues={{...curPatient, birthday }}
           className="ant-advanced-search-form"
         >
@@ -156,6 +176,7 @@ class NewAndDetail extends React.Component{
         {/* 疾病信息 */}
         <h2>症状信息</h2>
         <Form
+          ref={this.diseaseFormRef}
           initialValues={curPatient}
           className="ant-advanced-search-form"
         >

@@ -41,7 +41,7 @@ class MainLayout extends React.Component {
             <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['home']} style={{ width: "70%" }}>
               <Menu.Item key="home"><Link to="/home">首页</Link></Menu.Item>
               <Menu.Item key="manage"><Link to="/manage">患者管理</Link></Menu.Item>
-              <Menu.Item key="new"><Link to="/new">新增患者</Link></Menu.Item>
+              <Menu.Item key="new" onClick={() => this.props.dispatch({type: 'CLEAR_CURRENT_PATIENT'})}><Link to="/new">新增患者</Link></Menu.Item>
               {/* <Menu.Item key="todo"><Link to="/todo">TodoList</Link></Menu.Item> */}
             </Menu>
           </Header>
@@ -49,6 +49,7 @@ class MainLayout extends React.Component {
           <div className="site-layout-background">
               <Route key="route-home" path="/home" component={Home} />
               <Route key="route-manage" path="/manage" component={Manage} />
+              <Route key="route-detail" path="/detail/:id" component={NewAndDetail} />
               <Route key="route-new" path="/new" component={NewAndDetail} />
               <Route key="route-result" path="/result/:id" component={Result} />
           </div>

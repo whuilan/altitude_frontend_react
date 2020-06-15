@@ -74,7 +74,7 @@ class Manage extends React.Component{
       key: 'operation',
       render: (_, record) => (
         <div>
-          <Button type='primary' key={`detail-${record.pid}`} onClick={() => {this.handleSelect(record)}}><Link to='/new'>详情</Link></Button>
+          <Button type='primary' key={`detail-${record.pid}`} onClick={() => {this.handleSelect(record)}}><Link to={`/detail/${record.pid}`}>详情</Link></Button>
           <Button type='primary' key={`delete-${record.pid}`} style={{marginLeft:'2px'}} onClick={() => deletePatientById(record.pid, this.props.dispatch)}>删除</Button>
         </div>
       ),

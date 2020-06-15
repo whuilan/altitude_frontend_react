@@ -4,7 +4,7 @@ const defaultState = {
   source: '', // '简化版的...'
 }
 
-function resultReduer(state = defaultState, action){
+function resultReducer(state = defaultState, action){
   console.log(action)
   const {type, result} = action;
   switch(type){
@@ -15,4 +15,4 @@ function resultReduer(state = defaultState, action){
   }
 }
 
-export default resultReduer;
+export default resultReducer;
