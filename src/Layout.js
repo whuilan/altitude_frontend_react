@@ -43,7 +43,7 @@ class MainLayout extends React.Component {
                 <Button onClick={this.handleLogout}>您好，{username}</Button>              
               }
             </div>
-            <Menu onClick={this.handleMenuClick} selectedKeys={router.route} theme="dark" mode="horizontal" style={{ width: "70%" }}>
+            <Menu onClick={this.handleMenuClick} selectedKeys={router.route} defaultSelectedKeys={'home'} theme="dark" mode="horizontal" style={{ width: "70%" }}>
               <Menu.Item key="home"><Link to="/home">首页</Link></Menu.Item>
               <Menu.Item key="manage"><Link to="/manage">患者管理</Link></Menu.Item>
               <Menu.Item key="new" onClick={() => this.props.dispatch({type: 'CLEAR_CURRENT_PATIENT'})}><Link to="/new">新增患者</Link></Menu.Item>
