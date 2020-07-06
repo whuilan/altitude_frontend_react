@@ -29,9 +29,6 @@ function manageReducer(state = defaultState, action){
     case 'CLEAR_CURRENT_PATIENT':
       console.log("clear curPatient!")
       return {...state, curPatient: {}}
-    case 'SAVE_CURRENT_PATIENT':
-      const {patientList} = action
-      return {...state, patientList}
     default:
       return state;
   }

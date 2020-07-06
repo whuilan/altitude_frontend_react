@@ -39,7 +39,7 @@ function savePatient({patient}, dispatch){
     if(errno === 0){
       message.success("保存成功！")
       dispatch({
-        type: 'SAVE_CURRENT_PATIENT',
+        type: 'SET_PATIENT_LIST',
         patientList: data || []
       })
     }

@@ -51,6 +51,7 @@ class MainLayout extends React.Component {
           </Header>
           <Content className="site-layout">
           <div className="site-layout-background">
+              <Route key="home" exact path="/" component={Home} />
               <Route key="route-home" path="/home" component={Home} />
               <Route key="route-manage" path="/manage" component={Manage} />
               <Route key="route-detail" path="/detail/:id" component={NewAndDetail} />

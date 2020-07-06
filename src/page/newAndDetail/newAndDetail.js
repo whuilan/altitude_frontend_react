@@ -160,9 +160,9 @@ class NewAndDetail extends React.Component{
           <Col span={4}>
             <Button type="primary" disabled={curPatient.pid === undefined}><Link to={`/result/${curPatient.pid}`}>查看评估结果</Link></Button>
           </Col>
-          <Col span={4}>
+          {/* <Col span={4}>
             <Button type="primary" onClick={this.handleUpdate}>测试</Button>
-          </Col>
+          </Col> */}
         </Row>
 
         {/* 基本信息输入表单 */}
