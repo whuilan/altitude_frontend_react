@@ -106,7 +106,8 @@ class NewAndDetail extends React.Component{
 
   getFields = (items) => {
     const {curPatient} = this.props
-    // console.log(curPatient["pid"])
+    console.log(curPatient["pid"])
+    console.log("重新遍历渲染生成表单")
     const { Option } = Select;
     const children = items.map(item => (
       <Col span={8} key={item.name}>
